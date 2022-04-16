@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}SEP | Home{% endblock %}
+{% block unique %}
+<!-- external css -->
+<link rel="stylesheet" href="../static/css/style.css">
+{% endblock %}
+{% block content %}
+ <!-- content -->
+ <h2 id="title">Student Employment Prediction <span> <i class="fas fa-project-diagram"></i></span></h2>
+ <div class="content">
+     <img src="../static/img/illustration.svg" alt="" data-aos="zoom-in">
+     <div class="details">
+         <p>SEP, or Institute of Computer Studies <span class="text-success">Student Employment Prediction</span> is a system that predict the employment status of the graduating students of ICS based on its factors like
+             academic employability signals and other factors, this system will predict whether the student will be employed, self-employed or unemployed in IT/Tech industry within
+             6 months after their graduation, this system uses advance algorithm to provide more accurate result.
+         </p>
+         <button type="button" id="loginBtn" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><span><i class="fas fa-sign-in-alt"></i></span> Log-in</button>
+     </div>
+ </div>
+
+ <!-- login modal -->
+  <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+             <div class="modal-header">
+             <h5 class="modal-title text-success" id="exampleModalLabel">Log-in</h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label for="">User email</label>
+                        <input type="text" class="form-control" name="user_id" id="user_id" aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted">example: juan@gmail.com</small>
+                        </div>
+                        <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">submit</button>
+                </div>
+            </form>
+         </div>
+     </div>
+ </div>
+{% endblock %}

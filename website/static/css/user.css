@@ -1,0 +1,94 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #fff;
+}
+.prediction-content{
+    height: 100vh;
+    display: flex;
+    text-align: center;
+}
+.profile{
+    padding: 5px 20px;
+    height: 100vh;
+    width: 30%;
+    background-color: #0B6A00;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+}
+.profile img{
+    width: 150px;
+    height: 150px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+}
+.profile-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.logout-btn{
+    width: 80%;
+}
+.prediction_result{
+    margin-top: 20vh;
+    width: 80%;
+    padding: 20px;
+    margin-left: 25%;
+}
+.prediction_result h3{
+    color: #0B6A00;
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    padding-top: 10px;
+}
+.result{
+    width: 35%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid black;
+    margin: 20px auto;
+    padding: 5px;
+    border-radius: 15px;
+}
+.result h1{
+    font-size: 85px;
+    color: #0B6A00;
+}
+.no_prediction{
+    color: #0B6A00;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#chart_div{
+    width: 100%;
+    margin: auto;
+}
+.navbar{
+    display: none;
+}
+@media only screen and (max-width: 700px){
+    .profile{
+        display: none;
+    }
+    .prediction_result{
+        width: 100%;
+        margin-left: 0;
+        height: 90vh;
+    }
+    .navbar{
+        display: block;
+    }
+}

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}SEP | Profile{% endblock %}
+{% block unique %}
+    <link rel="stylesheet" href="../static/css/profile.css">
+{% endblock %}
+{% block content %}
+        <!-- navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+            <a class="navbar-brand text-success" href="#"><span> <i class="fas fa-project-diagram"></i></span> SEP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                {% if current_user.role == "admin" %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/manage_students">Students</a>
+                    </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link profile-link" href="/user">Home</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+     <!-- profile -->
+     <div class="profile">
+        <div class="profile-details">
+          <img src="/static/uploads/{{ current_user.filename }}" alt="" data-aos="zoom-in">
+              <button type="button" class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#updateModal"><i class="fas fa-user-edit"></i></button>
+              <h5 class="">{{ current_user.role }}</h5>
+              <h3 class="text-success">{{ current_user.last_name + ', ' + current_user.first_name + ' '+current_user.middle_name }}</h3>
+              <h4>{{ current_user.email }}</h4>
+              <button type="button" class="btn btn-lg btn-danger logout-btn" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+        </div>
+    </div>
+
+     <!-- logout Modal -->
+     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-secondary">Logout</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Logout now?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a type="button" href="/logout" class="btn btn-success">Yes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Update student Modal -->
+     <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title text-success" id="updateModalLabel">Update Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <img src="/static/uploads/{{ current_user.filename }}" height='150' width='150' alt="">
+            <h4 class="text-success m-2">{{ current_user.last_name + ', ' + current_user.first_name + ' ' + current_user.middle_name }}</h4>
+            <p class="m-0">Role: {{ current_user.role }}</p>
+            <p>Email: {{ current_user.email }}</p>
+          </div>
+          <div class="modal-body">
+             <form action="" method="POST" enctype="multipart/form-data">
+                    {% if current_user.password_changed %}
+                    <p class="text-primary">You have already changed your password</p>
+                {% else %}
+                  <div class="form-group">
+                    <label for=""><span><i class="fas fa-unlock"></i></span> Password <small class="text-secondary">(Note!, You can only change your password once.)</small></label>
+                    <input type="password" class="form-control" name="new_password" id="new_password" aria-describedby="helpId" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for=""><span><i class="fas fa-unlock"></i></span> Confirm Password</label>
+                    <input type="password" class="form-control" name="confirm_password" id="confirm_password" aria-describedby="helpId" placeholder="">
+                  </div>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
